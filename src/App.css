@@ -1,0 +1,96 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #FFFF;
+  min-height: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-body {
+  background-color: #FFFF;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.checkbox {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 20px;
+  height: 20x;
+  margin-right: 10px;
+  margin-left: 400px;
+  margin-top: 3px;
+  padding: 0;
+  text-align: center;
+  width: 28px;
+}
+
+.completedTask {
+  text-decoration-line: line-through;
+  color: gray;
+}
+
+.uncompletedTask {
+  text-decoration-line: none;
+  color: black;
+}
+
+p {
+  font-family: Roboto;
+  font-size: 20px;
+  line-height: 41px;
+}
+
+* {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+	color: seagreen;
+	text-align: center;
+}
+
+li {
+	font-size: 18px;
+}
+
+a {
+	text-decoration: none;
+}
