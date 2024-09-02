@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import { useState } from 'react';
 import ShowHideButton from "./ShowHideButton";
 import TaskContainer from "./TaskContainer";
+import InfoButton from "./InfoButton";
 
 function App() {
   
@@ -16,7 +17,8 @@ function App() {
       </header>
 
       <body className="App-body">
-        <Stack direction="column" justifyContent="start" >
+        <Stack direction="column" justifyContent="start" >  
+          <InfoButton />
           <ShowHideButton showDescriptions={showDescriptions} setShowDescriptions={setShowDescriptions} />
           <br></br>
           <TaskContainer extended={showDescriptions} />

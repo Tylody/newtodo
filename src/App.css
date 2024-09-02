@@ -46,28 +46,30 @@
   }
 }
 
-.checkbox {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 25px;
-  font-weight: bold;
-  line-height: 20px;
-  height: 20x;
-  margin-right: 10px;
-  margin-left: 400px;
-  margin-top: 3px;
-  padding: 0;
-  text-align: center;
-  width: 28px;
+.task {
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: left;
 }
 
 .completedTask {
   text-decoration-line: line-through;
   color: gray;
+  padding-right: 80px;
 }
 
 .uncompletedTask {
+  text-decoration-line: none;
+  color: black;
+  padding-right: 80px;
+}
+
+.completedDesc {
+  text-decoration-line: line-through;
+  color: gray;
+}
+
+.uncompletedDesc {
   text-decoration-line: none;
   color: black;
 }
