@@ -49,14 +49,13 @@ function TaskContainer({ extended }) {
 
   return (
     <Grid
-      direction="column"
       justifyContent="flex-start"
       className="taskContainer"
-      spacing={2}
       alignItems="center"
     >
       {tasks.map((task) => (
         <TaskEntry
+          key={task.id}
           className="task"
           task={task}
           modifyTask={modifyTask}

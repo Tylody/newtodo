@@ -8,9 +8,12 @@ function EditTaskButton({ handleClick, editing }) {
   let icon;
   editing ? (icon = <CheckSharp />) : (icon = <Edit />);
 
+  let tooltipText;
+  editing ? (tooltipText = "Done") : (tooltipText = "Edit");
+
   return (
     <Box sx={{ "& button": { m: 0 } }}>
-      <Tooltip title="Edit" placement="top-end">
+      <Tooltip title={tooltipText} placement="top-end">
         <IconButton aria-label="edit" onClick={handleClick}>
           {icon}
         </IconButton>
