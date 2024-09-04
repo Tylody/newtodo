@@ -1,33 +1,42 @@
-import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
+import FormControl from "@mui/material/FormControl";
+import Input from "@mui/material/Input";
 
 const uncompletedVars = {
-    color: 'black',
-}
+  color: "black",
+};
 
 const completedVars = {
-    color: 'gray',
-}
+  color: "gray",
+};
 
 const unextendedVars = {
-    display: 'none',
-}
+  display: "none",
+};
 
-function TaskDescription({completedness, extended, input, setInput}) {
-    let vars;
+// Description of the task when editing
 
-    if(completedness && extended)
-        vars = completedVars;
-    
-    if(!completedness && extended) 
-        vars = uncompletedVars;
+function TaskDescription({ completedness, extended, input, setInput }) {
+  let vars;
 
-    if(!extended)
-        vars = unextendedVars;
+  if (completedness && extended) vars = completedVars;
 
-    return <FormControl variant="standard">
-        <Input id="simple-controlled" sx={vars} defaultValue={input} multiline onChange={(event) => { setInput(event.target.value ) }}></Input>
+  if (!completedness && extended) vars = uncompletedVars;
+
+  if (!extended) vars = unextendedVars;
+
+  return (
+    <FormControl variant="standard">
+      <Input
+        id="simple-controlled"
+        sx={vars}
+        defaultValue={input}
+        multiline
+        onChange={(event) => {
+          setInput(event.target.value);
+        }}
+      ></Input>
     </FormControl>
+  );
 }
 
 export default TaskDescription;

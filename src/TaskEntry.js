@@ -1,79 +1,127 @@
-import { useState } from 'react';
-import TaskLabel from './TaskLabel';
-import TaskDescription from './TaskDescription';
-import DeleteTaskButton from './DeleteTaskButton';
-import EditTaskButton from './EditTaskButton';
-import { Checkbox, Stack } from '@mui/material';
+import { useState } from "react";
+import TaskLabel from "./TaskLabel";
+import TaskDescription from "./TaskDescription";
+import DeleteTaskButton from "./DeleteTaskButton";
+import EditTaskButton from "./EditTaskButton";
+import { Checkbox, Stack } from "@mui/material";
 
-function TaskEntry({task, modifyTask, deleteTask, extended}) {
-    
-    const [editing, setEditing] = useState(false); 
+// Individual object that stores all data related to a task
+// Includes checkbox, task label, task description, edit button, and delete button
 
-    const [hovering, setHovering] = useState(false);
+function TaskEntry({ task, modifyTask, deleteTask, extended }) {
+  const [editing, setEditing] = useState(false);
 
-    let taskCss;
-    task.completed ? taskCss = 'completedTask' : taskCss='uncompletedTask'
+  const [hovering, setHovering] = useState(false);
 
-    let descCss;
-    task.completed ? descCss = 'completedDesc' : descCss='uncompletedDesc';
+  let taskCss;
+  task.completed ? (taskCss = "completedTask") : (taskCss = "uncompletedTask");
 
-    const [taskLabel, setTaskLabel] = useState(task.label);
+  let descCss;
+  task.completed ? (descCss = "completedDesc") : (descCss = "uncompletedDesc");
 
-    const [taskDescription, setTaskDescription] = useState(task.description);
+  const [taskLabel, setTaskLabel] = useState(task.label);
 
-    const editingLabel = <TaskLabel completedness={task.completed} input={task.label} setInput={setTaskLabel} />
+  const [taskDescription, setTaskDescription] = useState(task.description);
 
-    let labelElement;
-    editing ? labelElement = editingLabel : labelElement= <p className={taskCss}>{task.label}</p>;
+  const editingLabel = (
+    <TaskLabel
+      completedness={task.completed}
+      input={task.label}
+      setInput={setTaskLabel}
+    />
+  );
 
-    const editingDescription = <TaskDescription completedness={task.completed} extended={extended} input={task.description} setInput={setTaskDescription} />;
+  let labelElement;
+  editing
+    ? (labelElement = editingLabel)
+    : (labelElement = <p className={taskCss}>{task.label}</p>);
 
-    let descriptionElement;
-    editing ? descriptionElement = editingDescription : descriptionElement = <p className={descCss}>{task.description}</p>;
+  const editingDescription = (
+    <TaskDescription
+      completedness={task.completed}
+      extended={extended}
+      input={task.description}
+      setInput={setTaskDescription}
+    />
+  );
 
-    if(!extended) descriptionElement = <br></br>;
+  let descriptionElement;
+  editing
+    ? (descriptionElement = editingDescription)
+    : (descriptionElement = <p className={descCss}>{task.description}</p>);
 
-    function checkboxClick() {
-        let id = task.id;
-        let label = task.label;
-        let description = task.description;
-        let completed = task.completed;
-        completed = !completed;
-        modifyTask({id, label, description, completed});
+  if (!extended) descriptionElement = <br></br>;
+
+  function checkboxClick() {
+    let id = task.id;
+    let label = task.label;
+    let description = task.description;
+    let completed = task.completed;
+    completed = !completed;
+    modifyTask({ id, label, description, completed });
+  }
+
+  function finishEditing(newLabel, newDescription) {
+    if (!editing) {
+      setEditing(true);
+      return;
     }
 
-    function finishEditing(newLabel, newDescription) {
+    let id = task.id;
+    let label = newLabel;
+    let description = newDescription;
+    let completed = task.completed;
 
-        if(!editing) {
-            setEditing(true)
-            return;
-        }
+    setEditing(false);
+    modifyTask({ id, label, description, completed });
+  }
 
-        let id = task.id;
-        let label = newLabel;
-        let description = newDescription;
-        let completed = task.completed;
+  let editingButton;
+  hovering
+    ? (editingButton = (
+        <EditTaskButton
+          handleClick={(e) => {
+            finishEditing(taskLabel, taskDescription);
+          }}
+          editing={editing}
+        />
+      ))
+    : (editingButton = <br />);
 
-        setEditing(false);
-        modifyTask({id, label, description, completed});
-    }
+  let deleteButton;
+  hovering
+    ? (deleteButton = (
+        <DeleteTaskButton
+          handleClick={(e) => {
+            deleteTask(e, task.id);
+          }}
+        />
+      ))
+    : (deleteButton = <br />);
 
-    let editingButton;
-    hovering ? editingButton = <EditTaskButton handleClick={(e) => {finishEditing(taskLabel, taskDescription)}} editing={editing} /> : editingButton = <br />;
-
-    let deleteButton;
-    hovering ? deleteButton = <DeleteTaskButton handleClick={(e) => {deleteTask(e, task.id)}} /> : deleteButton = <br />;
-
-    return (
-        <Stack direction="row" justifyContent="left" className="task" spacing={2} onMouseEnter={() => {setHovering(true)}} onMouseLeave={() => {setHovering(false)}} >
-            <br></br>
-            <div><Checkbox checked={task.completed} onChange={checkboxClick} /></div>
-            {labelElement}
-            {descriptionElement}
-            {editingButton}
-            {deleteButton}
-        </Stack>
-    );
+  return (
+    <Stack
+      direction="row"
+      justifyContent="left"
+      className="task"
+      spacing={2}
+      onMouseEnter={() => {
+        setHovering(true);
+      }}
+      onMouseLeave={() => {
+        setHovering(false);
+      }}
+    >
+      <br></br>
+      <div>
+        <Checkbox checked={task.completed} onChange={checkboxClick} />
+      </div>
+      {labelElement}
+      {descriptionElement}
+      {editingButton}
+      {deleteButton}
+    </Stack>
+  );
 }
 
 export default TaskEntry;

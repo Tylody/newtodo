@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #FFFF;
+  background-color: #ffff;
   min-height: 1vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@
 }
 
 .App-body {
-  background-color: #FFFF;
+  background-color: #ffff;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -81,18 +81,18 @@ p {
 }
 
 * {
-	font-family: Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 h1 {
-	color: seagreen;
-	text-align: center;
+  color: seagreen;
+  text-align: center;
 }
 
 li {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
