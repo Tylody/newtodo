@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>TYL-TODO</h1>
+        <h1>NEWTODO</h1>
       </header>
 
       <body className="App-body">

@@ -1,4 +1,4 @@
-# TYL-TODO
+# NEWTODO
 
 Simple todo-list app following various principles of organization.
 
